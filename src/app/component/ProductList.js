@@ -112,7 +112,7 @@ function ProductList({ Product }) {
                 </ul>
               </div>
               {showErrorMessage && (
-                <div className="text-red-500 text-sm px-4 sm:px-7">
+                <div className="text-red-500 text-sm px-4 pt-4 sm:px-7">
                   Please select at least one product.
                 </div>
               )}

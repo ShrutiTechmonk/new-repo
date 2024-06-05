@@ -4,25 +4,33 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProductList from "./ProductList";
 
 function review() {
-    const [showReview, setShowReview] = useState(false);
+  const [showReview, setShowReview] = useState(false);
   const Review = () => setShowReview(!showReview);
 
   const [showProduct, setShowProduct] = useState(false);
   const Product = () => setShowProduct(!showProduct);
   return (
     <>
-     <section className=" flex items-center font-generalsans h-fit w-full py-[2rem] md:pt-[6rem] md:pb-[2rem] px-[1rem] md:px-[3rem] lg:px-[3rem] 2xl:px-[5rem]">
+      <section className=" flex items-center font-generalsans h-fit w-full py-[2rem] md:pt-[6rem] md:pb-[2rem] px-[1rem] md:px-[3rem] lg:px-[3rem] 2xl:px-[5rem]">
         <div className="container">
           <div className="lg:w-[80%] bg-[#F3F5F8] p-5 border border-[#00000024] rounded">
-            <div className="flex justify-between gap-3 items-center" onClick={Review}>
-              <div>
-                <h1 className="text-[#222] text-[12px] md:text-[15px] lg:text-[24px] font-semibold leading-normal">
-                  Import reviews from another platform
-                </h1>
-                <p className="text-[#00000085] text-[12px] md:text-[15px] lg:text-[18px]">
-                  Reviews must be collected from another review management
-                  platform
-                </p>
+            <div
+              className="flex justify-between gap-3 items-center"
+              onClick={Review}
+            >
+              <div className="flex gap-7">
+                <div className="flex justify-center items-center w-[70px] h-[69px] border rounded-2xl bg-white">
+                  <img src="/review.png" width={45} height={45} />
+                </div>
+                <div className="flex flex-col">
+                  <h1 className="text-[#222] text-[12px] md:text-[15px] lg:text-[24px] font-semibold leading-normal">
+                    Import reviews from another platform
+                  </h1>
+                  <p className="text-[#00000085] text-[12px] md:text-[15px] lg:text-[18px]">
+                    Reviews must be collected from another review management
+                    platform
+                  </p>
+                </div>
               </div>
 
               <span className={showReview && "rotate-180"}>
@@ -82,9 +90,9 @@ function review() {
             <ProductList Product={Product} />
           </>
         )}
-      </AnimatePresence> 
+      </AnimatePresence>
     </>
-  )
+  );
 }
 
-export default review
+export default review;
