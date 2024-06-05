@@ -7,6 +7,7 @@ function ProductList({ Product }) {
   const [showUrls, setShowUrls] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const ProductUrls = () => setShowUrls(!showUrls);
 
   const product = [
@@ -19,16 +20,31 @@ function ProductList({ Product }) {
 
   const handleCheckboxChange = (productName) => {
     setSelectedProducts((prevSelectedProducts) => {
-      if (prevSelectedProducts.includes(productName)) {
-        return prevSelectedProducts.filter((name) => name !== productName);
-      } else {
-        return [...prevSelectedProducts, productName];
+      const updatedProducts = prevSelectedProducts.includes(productName)
+        ? prevSelectedProducts.filter((name) => name !== productName)
+        : [...prevSelectedProducts, productName];
+
+      if (updatedProducts.length > 0) {
+        setShowErrorMessage(false);
       }
+
+      return updatedProducts;
     });
   };
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleNextClick = () => {
+    if (selectedProducts.length === 0) {
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 1000);
+    } else {
+      setShowUrls(true);
+    }
   };
 
   const filteredProducts = product.filter((p) =>
@@ -44,7 +60,7 @@ function ProductList({ Product }) {
         className="font-HelveticaNeueLtd fixed inset-0 z-50 flex justify-center items-center bg-opacity-50"
       >
         {showUrls ? (
-          <ProductUrl ProductUrls={ProductUrls} />
+          <ProductUrl ProductUrls={ProductUrls} selectedProducts={selectedProducts} />
         ) : (
           <div className="w-[80%] md:w-[60%] lg:w-[45%] bg-[#fff] shadow-md rounded-[37px]">
             <div
@@ -95,6 +111,11 @@ function ProductList({ Product }) {
                   )}
                 </ul>
               </div>
+              {showErrorMessage && (
+                <div className="text-red-500 text-sm px-4 sm:px-7">
+                  Please select at least one product.
+                </div>
+              )}
               <div className="flex justify-between items-center gap-2 sm:gap-3 p-4 sm:p-5">
                 <span className="text-xs sm:text-base text-center">{selectedProducts.length} Product selected</span>
                 <div className="flex gap-1 sm:gap-3">
@@ -105,7 +126,8 @@ function ProductList({ Product }) {
                     Cancel
                   </button>
                   <button
-                    onClick={ProductUrls}
+                    type="button"
+                    onClick={handleNextClick}
                     className="text-[#222] border text-[12px] md:text-[16px] font-normal rounded-md w-[3.5rem] sm:w-[4.5rem] h-[2rem]"
                   >
                     Next
