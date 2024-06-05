@@ -20,7 +20,7 @@ function review() {
             >
               <div className="flex gap-7">
                 <div className="flex justify-center items-center w-[70px] h-[69px] border rounded-2xl bg-white">
-                  <img src="/review.png" width={45} height={45} />
+                  <img src="/review.png" alt="review" width={45} height={45} />
                 </div>
                 <div className="flex flex-col">
                   <h1 className="text-[#222] text-[12px] md:text-[15px] lg:text-[24px] font-semibold leading-normal">
