@@ -15,7 +15,7 @@ function Chatboat({ chatBoat }) {
   return (
     <>
       <section className="font-HelveticaNeueLtd fixed inset-0 z-50 flex justify-end items-end p-2 bg-opacity-50">
-        <div className="h-full w-full sm:w-[50%] md:w-[40%] xl:w-[25%] flex flex-col border justify-between rounded-md bg-[#fff] shadow-md">
+        <div className="h-full w-full sm:w-[50%] md:w-[40%] xl:w-[30%] flex flex-col border justify-between rounded-md bg-[#fff] shadow-md">
           <div className="bg-[#f3f5f8] p-5 flex justify-between rounded-t-md items-center">
             <div className="flex gap-4">
               <img
@@ -24,7 +24,7 @@ function Chatboat({ chatBoat }) {
                 height={35}
                 onClick={chatBoat}
               />
-              <h1 className="text-[#019ed1] text-base md:text-xl lg:text-2xl font-semibold">
+              <h1 className="text-[#019ed1] text-base md:text-xl font-semibold">
                 Let's Chat!
               </h1>
             </div>
@@ -32,7 +32,7 @@ function Chatboat({ chatBoat }) {
           </div>
 
           <div
-            className="p-3 overflow-y-scroll"
+            className="p-3 h-full overflow-y-scroll"
             style={{ scrollbarWidth: "none" }}
           >
             {messages.map((msg, index) => (
