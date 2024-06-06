@@ -32,11 +32,11 @@ function Chatboat({ chatBoat }) {
           </div>
 
           <div
-            className="p-3 h-full overflow-y-scroll"
+            className="p-3 h-full overflow-y-scroll flex flex-col-reverse"
             style={{ scrollbarWidth: "none" }}
           >
-            {messages.map((msg, index) => (
-              <div key={index} className="p-4 grid justify-end">
+            {messages.slice(0).reverse().map((msg, index) => (
+              <div key={index} className="grid justify-end py-4">
                 <span className="h-auto bg-[#019ed1] shadow-lg text-white text-[14px] md:text-[16px] break-words inline-block max-w-[250px] p-3 rounded-2xl rounded-tr-none">
                   {msg}
                 </span>
@@ -44,11 +44,11 @@ function Chatboat({ chatBoat }) {
             ))}
           </div>
 
-          <div className="bg-[#f3f5f8] border-t rounded-b-md p-5 flex justify-between">
+          <div className="bg-[#f3f5f8] border-t rounded-b-md flex justify-between">
             <input
               type="text"
               placeholder="Type a message..."
-              className="bg-[#f3f5f8] text-[#61666c] text-[14px] md:text-[16px] outline-none flex-grow"
+              className="bg-[#f3f5f8] text-[#61666c] text-[14px] md:text-[16px] outline-none flex-grow p-5"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e) => {
@@ -58,7 +58,7 @@ function Chatboat({ chatBoat }) {
               }}
             />
             {message.trim() && (
-              <button onClick={handleSendMessage} className="ml-2">
+              <button onClick={handleSendMessage} className="mx-2">
                 <Image src="/send.svg" alt="send" width={25} height={25} />
               </button>
             )}
